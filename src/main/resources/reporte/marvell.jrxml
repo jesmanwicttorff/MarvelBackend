@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_Letter" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4002535b-2327-4657-944b-091c8d17276e">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="marvelldb"/>
+    <queryString language="SQL">
+        <![CDATA[Select id , nombre , descripcion from marvell]]>
+    </queryString>
+    <field name="id" class="java.lang.Long">
+        <property name="com.jaspersoft.studio.field.name" value="id"/>
+        <property name="com.jaspersoft.studio.field.label" value="id"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="marvell"/>
+    </field>
+    <field name="nombre" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="nombre"/>
+        <property name="com.jaspersoft.studio.field.label" value="nombre"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="marvell"/>
+    </field>
+    <field name="descripcion" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.label" value="descripcion"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="marvell"/>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="79" splitType="Stretch"/>
+    </title>
+    <pageHeader>
+        <band height="35" splitType="Stretch"/>
+    </pageHeader>
+    <columnHeader>
+        <band height="61" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="2" width="100" height="30" uuid="3db1d6a2-235b-496a-9223-b6e6d2d803a3">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0f736782-caac-428a-90c7-8d66edbd21d9"/>
+                </reportElement>
+                <text><![CDATA[id]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="137" y="0" width="100" height="30" uuid="d155fbfe-6582-4e0d-9e9f-36fc165cd4ae">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6fb258ad-99de-4e37-ada1-ad8a8891e8d9"/>
+                </reportElement>
+                <text><![CDATA[nombre]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="280" y="-1" width="100" height="30" uuid="7e265c23-b4f2-417e-9d96-666dbd3551f2">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9b610739-996c-4649-9ced-56e49e34507c"/>
+                </reportElement>
+                <text><![CDATA[descripcion]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="125" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="3" width="100" height="30" uuid="c0fc8de3-3166-4317-8d89-2f451d7e321f">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0f736782-caac-428a-90c7-8d66edbd21d9"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="140" y="3" width="100" height="30" uuid="0d44b64b-0ad0-4d46-8345-b04307913224">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6fb258ad-99de-4e37-ada1-ad8a8891e8d9"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="280" y="3" width="100" height="30" uuid="f4141a2d-c26c-4b9f-942e-30aaed61befa">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9b610739-996c-4649-9ced-56e49e34507c"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{descripcion}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+    <columnFooter>
+        <band height="45" splitType="Stretch"/>
+    </columnFooter>
+    <pageFooter>
+        <band height="54" splitType="Stretch"/>
+    </pageFooter>
+    <summary>
+        <band height="42" splitType="Stretch"/>
+    </summary>
+</jasperReport>

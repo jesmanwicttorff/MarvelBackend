@@ -1,0 +1,23 @@
+entity Marvell {
+	nombre String
+    descripcion String
+    imagenurl String
+}
+
+
+entity Distribuidor {
+	nombre String
+    sitioWeb String
+}
+
+relationship OneToMany {
+	Marvell to Distribuidor {distribuidoid}
+}
+
+
+paginate Marvell, Distribuidor with infinite-scroll
+dto Marvell, Distribuidor with mapstruct
+service Marvell, Distribuidor with serviceClass
+
+
+
