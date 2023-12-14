@@ -1,0 +1,65 @@
+[
+  {
+    "_id": {
+      "$oid": "65662576bea267a4f168002b"
+    },
+    "modelo": "Timberlan",
+    "color": "Anaranjado",
+    "descripcion": "Casual",
+    "_class": "com.marvell.domain.Zapatos"
+  },
+  {
+    "_id": {
+      "$oid": "65662576bea267a4f168002c"
+    },
+    "id": "2",
+    "modelo": "Nike",
+    "color": "Blanco",
+    "descripcion": "Deportivo"
+  },
+  {
+    "_id": {
+      "$oid": "65662576bea267a4f168002d"
+    },
+    "id": "3",
+    "modelo": "Reebock",
+    "color": "Negro",
+    "descripcion": "Deportivo"
+  },
+  {
+    "_id": {
+      "$oid": "65662576bea267a4f168002e"
+    },
+    "modelo": "Schekes",
+    "color": "Rojo",
+    "descripcion": "Casual",
+    "_class": "com.marvell.domain.Zapatos"
+  },
+  {
+    "_id": {
+      "$oid": "6567273299c1650fd8ad4a8d"
+    },
+    "modelo": "PUMA76",
+    "color": "Amarillo",
+    "descripcion": "Deportivo",
+    "_class": "com.marvell.domain.Zapatos"
+  },
+  {
+    "_id": {
+      "$oid": "65678821ae99aa477fb5e48b"
+    },
+    "modelo": "Schekes",
+    "color": "Gris",
+    "descripcion": "Casual",
+    "_class": "com.marvell.domain.Zapatos"
+  },
+  {
+    "_id": {
+      "$oid": "6568098003f1f05471351fbf"
+    },
+    "modelo": "Good Year 2024",
+    "color": "Azul Oscuro",
+    "descripcion": "Deportivo",
+    "_class": "com.marvell.domain.Zapatos"
+  }
+]
