@@ -15,6 +15,7 @@ import java.util.Map;
 import javax.sql.DataSource;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
 import net.sf.jasperreports.export.SimpleDocxReportConfiguration;
@@ -54,16 +55,23 @@ public class ReportService {
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(marvell);
         parameters.put("createdby", "Universo Marvell");
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
-
+        ByteArrayOutputStream arrayOutputStream = new ByteArrayOutputStream();
         if (reportFormat.equalsIgnoreCase("html")) {
             JasperExportManager.exportReportToHtmlFile(jasperPrint, path + "\\UniversoMarvell.html");
         }
 
         if (reportFormat.equalsIgnoreCase(("pdf"))) {
-            JasperExportManager.exportReportToPdfFile(jasperPrint, path + "\\UniversoMarvell.pdf");
-        }
 
-        return "Report Generated in : " + path;
+            arrayOutputStream.reset();
+            JRPdfExporter exporterPdf = new JRPdfExporter();
+            exporterPdf.setExporterInput(new SimpleExporterInput(jasperPrint));
+            exporterPdf.setExporterOutput(new SimpleOutputStreamExporterOutput(arrayOutputStream));
+            exporterPdf.exportReport();
+            System.out.println("Document ");
+
+        }
+        return  Base64.getEncoder().encodeToString(arrayOutputStream.toByteArray());
+
     }
 
     public String ExcelReportMarvell() throws Exception {
@@ -73,7 +81,6 @@ public class ReportService {
         JasperReport jasperReport = JasperCompileManager.compileReport(new FileInputStream(file));
         Map<String, Object> parameters = new HashMap<>();
 
-        try (Connection connection = dataSource.getConnection()) {
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, new JRBeanCollectionDataSource(marvellDTOS));
 
             JRXlsxExporter exporter = new JRXlsxExporter();
@@ -88,7 +95,7 @@ public class ReportService {
 
             exporter.exportReport();
             return Base64.getEncoder().encodeToString(os.toByteArray());
-        }
+
     }
 
     public String WordReportMarvell() throws Exception {

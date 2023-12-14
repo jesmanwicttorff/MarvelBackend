@@ -5,13 +5,20 @@ import com.marvell.service.MarvellService;
 import com.marvell.service.ReportService;
 import com.marvell.service.dto.MarvellDTO;
 import com.marvell.web.rest.errors.BadRequestAlertException;
+
+import java.io.ByteArrayInputStream;
 import java.io.FileNotFoundException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+
+import feign.Body;
+import jakarta.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
+import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -151,14 +158,28 @@ public class MarvellResource {
 
     // Defino el servicio para generar el archivo PDF y HTML
     @GetMapping("marvell/report/{format}")
-    public ResponseEntity<String> getPdfReport(@PathVariable String format) {
+    public  ResponseEntity<Void> getPdfReport(@PathVariable String format, HttpServletResponse response) {
         log.debug("REST request to get a PDF report");
         try {
+
             String report = reportService.expoReport(format);
-            return ResponseEntity
-                .ok()
-                .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, "pdfReportGenerated"))
-                .body(report);
+            System.out.println("PDF " + report);
+
+            response.setHeader("Content-Disposition", "inline; filename=\"" + "ReportNombre" + "\"");
+            response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
+            response.setHeader("reportName", "ReportNombre");
+
+            response.setHeader("output_content", "application/pdf");
+            response.setHeader("output_extension", "." + "pdf");
+            response.setContentType("application/pdf");
+            byte[] contentBytes = Base64.getDecoder().decode(report);
+            ByteArrayInputStream inStream = new ByteArrayInputStream(contentBytes);
+            IOUtils.copy(inStream, response.getOutputStream());
+           // System.out.println("Respuesta " + IOUtils.copy(inStream, response.getOutputStream()));
+
+            return ResponseEntity.ok()
+                .body(null);
+
         } catch (Exception e) {
             log.error("REST request to get a PDF report failed: {}", e.getMessage());
             return ResponseEntity
